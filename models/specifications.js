@@ -9,8 +9,4 @@ const SpecificationsSchema = new Schema({
     GPUBoostClockSpeed: { type: String, required: true },
 });
 
-SpecificationsSchema.virtual("url").get(function () {
-    return `catalog/${this.videoCard}/${this._id}`
-});
-
 module.exports = mongoose.model("Specifications", SpecificationsSchema);

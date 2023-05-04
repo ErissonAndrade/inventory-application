@@ -11,11 +11,11 @@ const VideoCardSchema = new Schema({
 });
 
 VideoCardSchema.virtual("url").get(function() {
-    return `/catalog/videocard/${this.id}`;
+    return `/video-cards/${this.id}`;
 });
 
 VideoCardSchema.virtual("title").get(function () {
-    return `${manufacturer} ${model}`
+    return `${this.manufacturer} ${this.model}`
 });
 
 module.exports = mongoose.model("VideoCards", VideoCardSchema);

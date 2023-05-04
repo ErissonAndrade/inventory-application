@@ -1,0 +1,9 @@
+extends layout
+
+block content
+    h1 Video Cards List
+    ul 
+        each videoCard in videoCards_list
+            li
+                a(href=videoCard.url) #{videoCard.title}
+        

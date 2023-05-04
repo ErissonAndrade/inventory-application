@@ -12,11 +12,11 @@ const mongoDB = `mongodb+srv://${process.env.USER_ID}:${process.env.USER_PASSWOR
 main().catch((err) => console.log(err));
 
 async function main() {
-  await mongoose.connect(mongoDB);
+  await mongoose.connect(mongoDB, {dbName: "inventory-application"});
 };
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var videoCardsRouter = require('./routes/video-cards');
 
 var app = express();
 
@@ -31,7 +31,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/video-cards',  videoCardsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
