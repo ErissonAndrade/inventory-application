@@ -1,4 +1,41 @@
 extends layout
 
 block content
-    h1=videoCard_create
+    h1 Create New Video Cards
+    if errors
+        each error in errors
+            ul Please review the following fields:
+                li=error.msg
+    form(method="POST" action="")
+        fieldset
+            legend Manufacturer Name and Model
+            div.form-group
+                label(for="manufacturer") Manufacturer
+                input#manufacturer.form-control(type="text", placeholder="Nvidia, AMD", name="manufacturer")
+                label(for="model") Model
+                input#model.form-control(type="text", placeholder="Nvidia, AMD", name="model")
+        fieldset
+            legend Specifications
+            div.form-group
+                label(for="memory") Memory
+                input#memory.form-control(type="text", placeholder="4GB, 8GB, 12GB", name="memory")
+                label(for="memoryType") Memory Type
+                input#memoryType.form-control(type="text", placeholder="GDDR5, GDDR6", name="memoryType")
+                label(for="GPUClockSpeed") GPU Clock Speed
+                input#GPUClockSpeed.form-control(type="text", placeholder="1365Mhz, 1410Mhz, 1510Mhz", name="GPUClockSpeed")
+                label(for="GPUBoostClockSpeed") GPU Boost Clock Speed
+                input#GPUBoostClockSpeed.form-control(type="text", name="GPUBoostClockSpeed" placeholder="1600Mhz, 1700Mhz, 1800Mhz")
+        fieldset
+            legend Stock
+            div.form-group
+                label(for="quantity") Quantity
+                input#quantity.form-control(type="number" name="quantity")
+                label(for="videoCardPrice") Price
+                input#videoCardPrice.form-control(type="number", name="videoCardPrice")
+            div.form-group Is Available?
+                label(for="isAvailableTrue") True
+                input#isAvailableTrue(type="radio" name="isAvailable" value=true checked) 
+                label(for="isAvailableFalse") False
+                input#isAvailableFalse(type="radio" name="isAvailable" value=false)
+        button.btn-primary(type="submit") Submit
+    div=message
