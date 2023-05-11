@@ -1,7 +1,7 @@
 extends layout
 
 block content
-    h1 Create New Video Cards
+    h1 Create New Video Card
     if errors
         each error in errors
             ul Please review the following fields:
@@ -34,8 +34,8 @@ block content
                 input#videoCardPrice.form-control(type="number", name="videoCardPrice")
             div.form-group Is Available?
                 label(for="isAvailableTrue") True
-                input#isAvailableTrue(type="radio" name="isAvailable" value=true checked) 
+                input#isAvailableTrue(type="radio" name="isAvailable" value="true" checked) 
                 label(for="isAvailableFalse") False
-                input#isAvailableFalse(type="radio" name="isAvailable" value=false)
+                input#isAvailableFalse(type="radio" name="isAvailable" value="false")
         button.btn-primary(type="submit") Submit
     div=message

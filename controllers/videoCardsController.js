@@ -10,7 +10,7 @@ exports.videoCard_list = async (req, res, next) => {
         res.render("videoCard_list", { videoCards_list: allVideoCards} );
     }
     catch(err) {
-        console.log(err);
+        console.error(err);
         next(err);
     }
 };
@@ -32,7 +32,7 @@ exports.videoCard_details = async (req, res, next) => {
         );
     }
     catch(err) {
-        console.log(err);
+        console.error(err);
         next(err);
     }
 };
@@ -70,7 +70,7 @@ exports.videoCard_create_post = [
         try {
             const errors = validationResult(req);
 
-            if(errors) {
+            if(!errors.isEmpty()) {
                 return res.render("videoCard_create", { errors: errors.array() })
             }
 
@@ -81,12 +81,8 @@ exports.videoCard_create_post = [
                     GPUClockSpeed: req.body.GPUClockSpeed,
                     GPUBoostClockSpeed: req.body.GPUClockSpeed
                 }),
-                new Stock({ quantity: req.body.quantity, isAvailable: req.body.isAvailable })
+                new Stock({ quantity: req.body.quantity, isAvailable: Boolean(req.body.isAvailable) })
             ]);
-
-            await specifications.save();
-            await stock.save();
-
 
             const videoCard = new VideoCard({
                 manufacturer: req.body.manufacturer,
@@ -95,10 +91,12 @@ exports.videoCard_create_post = [
                 stock: stock._id,
                 price: req.body.videoCardPrice
             });
-
-            await videoCard.save();
-            console.log(`Available: ${req.body.isAvailable}`)
             
+            await specifications.save();
+            await stock.save();
+            await videoCard.save();
+            
+            res.redirect("/video-cards");
         }
         catch(err) {
             next(err)
