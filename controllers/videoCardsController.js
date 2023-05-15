@@ -6,7 +6,6 @@ const { body, validationResult } = require('express-validator');
 exports.videoCard_list = async (req, res, next) => {
     try{
         const allVideoCards = await VideoCard.find();
-        console.log(allVideoCards.map(x => x.url))
         res.render("videoCard_list", { videoCards_list: allVideoCards} );
     }
     catch(err) {
@@ -27,7 +26,8 @@ exports.videoCard_details = async (req, res, next) => {
                 GPUClockSpeed: videoCard.specifications.GPUClockSpeed,
                 GPUBoostClockSpeed: videoCard.specifications.GPUBoostClockSpeed,
                 isAvailable: videoCard.stock.isAvailable,
-                quantity: videoCard.stock.quantity
+                quantity: videoCard.stock.quantity,
+                videoCardUrl: videoCard.url
             }
         );
     }
@@ -99,6 +99,7 @@ exports.videoCard_create_post = [
             res.redirect("/video-cards");
         }
         catch(err) {
+            console.error(err)
             next(err)
         }
         
@@ -106,11 +107,27 @@ exports.videoCard_create_post = [
 ];
 
 exports.videoCard_delete_get = (req, res, next) => {
-    res.send("This is where you can see everything you're able to delete");
+    try{
+        res.render('videoCard_delete', { lastPage: req.headers.referer});
+    }
+    catch(err){
+        console.error(err);
+        next(err);
+    }
 };
 
-exports.videoCard_delete_post = (req, res, next) => {
-    res.send("This is the action of deleting a video card in the db");
+exports.videoCard_delete_post = async (req, res, next) => {
+    try{
+        const videoCard = await VideoCard.findById(req.params.id);
+        await Specifications.findByIdAndRemove(videoCard.specifications._id);
+        await Stock.findByIdAndRemove(videoCard.stock._id);
+        await VideoCard.findByIdAndRemove(req.params.id);
+        res.redirect('/video-cards');
+    }
+    catch(error) {
+        console.error(err);
+        next(err);
+    }
 };
 
 exports.videoCard_update_get = (req, res, next) => {

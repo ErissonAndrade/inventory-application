@@ -1,4 +1,11 @@
 extends layout
 
 block content
-    h1=videoCard_delete
+    h4 Do you really want to delete this Video Card?
+    div.form-group
+        form(method="POST", action="")
+            input#videoCardId.form-control(type="hidden", name="videoCardId", value=videoCardId)
+            button.btn-primary(type="submit") Yes
+
+        a(href=lastPage) 
+            button.btn-secondary No
