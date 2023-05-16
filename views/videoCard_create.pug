@@ -11,27 +11,27 @@ block content
             legend Manufacturer Name and Model
             div.form-group
                 label(for="manufacturer") Manufacturer
-                input#manufacturer.form-control(type="text", placeholder="Nvidia, AMD", name="manufacturer")
+                input#manufacturer.form-control(type="text", placeholder="Nvidia, AMD", name="manufacturer", value=manufacturer)
                 label(for="model") Model
-                input#model.form-control(type="text", placeholder="Nvidia, AMD", name="model")
+                input#model.form-control(type="text", placeholder="Nvidia, AMD", name="model", value=model)
         fieldset
             legend Specifications
             div.form-group
                 label(for="memory") Memory
-                input#memory.form-control(type="text", placeholder="4GB, 8GB, 12GB", name="memory")
+                input#memory.form-control(type="text", placeholder="4GB, 8GB, 12GB", name="memory", value=memory)
                 label(for="memoryType") Memory Type
-                input#memoryType.form-control(type="text", placeholder="GDDR5, GDDR6", name="memoryType")
+                input#memoryType.form-control(type="text", placeholder="GDDR5, GDDR6", name="memoryType", value=memoryType)
                 label(for="GPUClockSpeed") GPU Clock Speed
-                input#GPUClockSpeed.form-control(type="text", placeholder="1365Mhz, 1410Mhz, 1510Mhz", name="GPUClockSpeed")
+                input#GPUClockSpeed.form-control(type="text", placeholder="1365Mhz, 1410Mhz, 1510Mhz", name="GPUClockSpeed", value=GPUClockSpeed)
                 label(for="GPUBoostClockSpeed") GPU Boost Clock Speed
-                input#GPUBoostClockSpeed.form-control(type="text", name="GPUBoostClockSpeed" placeholder="1600Mhz, 1700Mhz, 1800Mhz")
+                input#GPUBoostClockSpeed.form-control(type="text", name="GPUBoostClockSpeed" placeholder="1600Mhz, 1700Mhz, 1800Mhz", value=GPUBoostClockSpeed)
         fieldset
             legend Stock
             div.form-group
                 label(for="quantity") Quantity
-                input#quantity.form-control(type="number" name="quantity")
+                input#quantity.form-control(type="number" name="quantity", value=quantity)
                 label(for="videoCardPrice") Price
-                input#videoCardPrice.form-control(type="number", name="videoCardPrice")
+                input#videoCardPrice.form-control(type="number", name="videoCardPrice", value=videoCardPrice)
             div.form-group Is Available?
                 label(for="isAvailableTrue") True
                 input#isAvailableTrue(type="radio" name="isAvailable" value="true" checked) 
