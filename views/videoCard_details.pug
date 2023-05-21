@@ -9,8 +9,9 @@ block content
     div Available: #{isAvailable}
     div Quantity: #{quantity}
 
-    a(href=videoCardUrl+'/delete')
-        button.btn-primary Delete
-    a(href=videoCardUrl+'/update')
-        button.btn-primary Update
+    div.form-group
+        a(href=videoCardUrl+'/delete')
+            button.btn-secondary Delete
+        a(href=videoCardUrl+'/update')
+            button.btn-primary Update
     

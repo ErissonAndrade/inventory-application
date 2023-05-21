@@ -3,8 +3,9 @@ extends layout
 block content
     h1 Create New Video Card
     if errors
+        ul Please review the following fields:
         each error in errors
-            ul Please review the following fields:
+            ul
                 li=error.msg
     form(method="POST" action="")
         fieldset

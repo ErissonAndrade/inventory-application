@@ -5,7 +5,7 @@ block content
     div.form-group
         form(method="POST", action="")
             input#videoCardId.form-control(type="hidden", name="videoCardId", value=videoCardId)
-            button.btn-primary(type="submit") Yes
-
-        a(href=lastPage) 
-            button.btn-secondary No
+            div.form-group
+                button.btn-primary(type="submit") Yes
+                a(href=lastPage) 
+                    button.btn-secondary No
